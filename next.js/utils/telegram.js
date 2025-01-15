@@ -1,5 +1,5 @@
 // msg, chatd
-const TELEGRAM_API_URL = `https://api.telegram.org/bot${process.env.BOT_TOKEN}`
+const TELEGRAM_API_URL = `https://api.telegram.org/bot${process.env.TOKEN}`
 
 export async function sendMessage(chatid, text) {
     const url = `${TELEGRAM_API_URL}/sendMessage`;
