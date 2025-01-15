@@ -1,13 +1,14 @@
 import requests
 import os
-from keepalive import keep_alive
+
 from telegram.ext import Updater, CommandHandler
 import datetime
 from beemovie import beemovie
+from dotenv import load_dotenv
 
+load_dotenv()
 
-
-my_secret = os.environ['TOKEN']
+my_secret = os.getenv('TOKEN')
 
 def linecount(splitscript):
     with open("count.txt", 'r') as f:
@@ -59,22 +60,17 @@ def main():
     updater = Updater(my_secret)
     dp = updater.dispatcher
     #schedule.run_pending()
-    j = updater.job_queue
-    j.run_daily(telegram_bot_pic, days=(0,1,2,3,4,5,6), time= datetime.time(hour=23, minute=00, second=00))
-   # j.run_daily(telegram_bot_pic, days=(0,1,2,3,4,5,6), time= datetime.time(hour=1, minute=43, second=00))
-    
+    #j = updater.job_queue
+    #j.run_daily(telegram_bot_pic, days=(0,1,2,3,4,5,6), time= datetime.time(hour=23, minute=00, second=00))
+   
+    telegram_bot_pic(updater)
     dp.add_handler(CommandHandler('cat', cat))
     dp.add_handler(CommandHandler('help', start))
     dp.add_handler(CommandHandler('start', start))
     updater.start_polling()
     updater.idle()
 
-    
-#schedule.every().day.at("08:00").do(catpic)
-#schedule.every().minute.do(catpic)
+main()
 
-keep_alive()
-if __name__ == '__main__':
-    main()
 
     
