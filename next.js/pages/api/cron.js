@@ -1,6 +1,8 @@
+import { sendPhoto } from "@/utils/telegram";
+
 export default async function handler(req, res) {
     if (req.method == "POST") {
-        const chatid = "@cattobotto";
+        const chatid = "-1839274499";
         const apiUrl = 'https://api.thecatapi.com/v1/images/search?size=small&format=json&limit=1';
         var url = '';
         // Make a GET request
@@ -25,6 +27,7 @@ export default async function handler(req, res) {
             console.error('Error:', error);
         });
 
+        console.log("url", url);
         if (url != '') {
             await sendPhoto(chatid, url, " ");
             res.status(200).send("OK");
