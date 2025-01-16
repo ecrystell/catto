@@ -1,6 +1,6 @@
 import { sendPhoto } from "@/utils/telegram";
 
-export default function handler(req, res) {
+export default function GET() {
     //if (req.method == "POST") {
     const chatId = "@cattobotto";
     const apiUrl = 'https://api.thecatapi.com/v1/images/search?size=small&mime_types=jpg&format=json&limit=1';
