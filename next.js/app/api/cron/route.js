@@ -1,6 +1,8 @@
 import { sendPhoto } from "@/utils/telegram";
 
-export default function GET() {
+export const dynamic = 'force-dynamic';
+
+export function GET(req) {
     //if (req.method == "POST") {
     const chatId = "@cattobotto";
     const apiUrl = 'https://api.thecatapi.com/v1/images/search?size=small&mime_types=jpg&format=json&limit=1';
@@ -25,7 +27,7 @@ export default function GET() {
         var pic = data[0]['url'];
         console.log(pic);
         sendPhoto(chatId, pic, " ");
-        res.status(200).send("OK");
+        //res.status(200).send("OK");
     })
     .catch(error => {
         console.error('Error:', error);
