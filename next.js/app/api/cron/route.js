@@ -37,4 +37,6 @@ export function GET(req) {
     //    res.status(500).send('Method Not Allowed');
     //}
 
+    return new Response(`cat picture sent hopefully`);
+
 }
