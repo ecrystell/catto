@@ -1,10 +1,11 @@
 import { sendPhoto } from "@/utils/telegram";
 
-export default async function handler(req, res) {
+export default function handler(req, res) {
     if (req.method == "POST") {
-        const chatid = "-1839274499";
-        const apiUrl = 'https://api.thecatapi.com/v1/images/search?size=small&format=json&limit=1';
-        var url = '';
+        const chatId = "@cattobotto";
+        const apiUrl = 'https://api.thecatapi.com/v1/images/search?size=small&mime_types=jpg&format=json&limit=1';
+        
+        
         // Make a GET request
         fetch(apiUrl)
         .then(response => {
@@ -21,17 +22,14 @@ export default async function handler(req, res) {
         })
         .then(data => {
             console.log(data[0]['url']);
-            url = data[0]['url'];
+            var pic = data[0]['url'];
+            console.log(pic);
+            sendPhoto(chatId, pic, " ");
+            res.status(200).send("OK");
         })
         .catch(error => {
             console.error('Error:', error);
         });
-
-        console.log("url", url);
-        if (url != '') {
-            await sendPhoto(chatid, url, " ");
-            res.status(200).send("OK");
-        }
     } else {
         res.setHeader('Allow', ['POST']);
         res.status(500).send('Method Not Allowed');

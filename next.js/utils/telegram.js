@@ -22,7 +22,7 @@ export async function sendMessage(chatid, text) {
     }
 }
 
-export async function sendPhoto(chatid, url, caption) {
+export async function sendPhoto(chatid, pic, caption) {
     const url = `${TELEGRAM_API_URL}/sendPhoto`;
     try {
         const response = await fetch(url, {
@@ -32,7 +32,7 @@ export async function sendPhoto(chatid, url, caption) {
             },
             body: JSON.stringify({
                 chat_id: chatid,
-                url: url,
+                photo: pic,
                 caption: caption
             })
         })
