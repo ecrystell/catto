@@ -13,8 +13,15 @@ export default async function handler(req, res) {
       const apiUrl = 'https://api.thecatapi.com/v1/images/search?size=small&mime_types=jpg&format=json&limit=1';
       
       // Make a GET request
-      fetch(apiUrl)
-      .then(response => {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      console.log(data[0]['url'])
+      var pic = data[0]['url'];
+      console.log(pic);
+      await sendPhoto(chatId, pic, text);
+      res.status(200).send("OK");
+
+      /* .then(response => {
           if (!response.ok) {
           if (response.status === 404) {
               throw new Error('Data not found');
@@ -36,7 +43,7 @@ export default async function handler(req, res) {
       .catch(error => {
           console.error('Error:', error);
       });
-  
+   */
 
     } else {
       await sendMessage(chatId,text);
