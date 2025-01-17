@@ -13,7 +13,7 @@ export async function GET(req) {
     console.log(data[0]['url'])
     var pic = data[0]['url'];
     console.log(pic);
-    await sendPhoto(chatId, pic, text);
+    await sendPhoto(chatId, pic, " ");
     return new Response(`cat picture sent hopefully`);
 
     
