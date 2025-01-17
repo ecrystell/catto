@@ -10,6 +10,7 @@ export async function GET(req) {
     
     const response = await fetch(apiUrl);
     const data = await response.json();
+    console.log(data);
     console.log(data[0]['url'])
     var pic = data[0]['url'];
     console.log(pic);
